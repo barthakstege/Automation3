@@ -5,7 +5,7 @@
   tasks:
   - name: installeer service
     copy:
-     src: /home/bart/monitor-listen.service
+     src: /root/Automation3/SERVER_CLIENT/monitor-listen.service
      dest: /etc/systemd/system/
   - name: reload daemon
     systemd:

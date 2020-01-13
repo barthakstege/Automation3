@@ -5,5 +5,5 @@
   tasks: 
   - name: installeer scripts
     copy: 
-     src: /root/SCRIPTS
+     src: /root/Automation3
      dest: /root/

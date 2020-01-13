@@ -20,7 +20,7 @@ fi
 
 ## Run het Python script dat een script signed.
 echo "Sign a script"
-/usr/bin/python3 /root/Automation3/SIGNING/sign.py 
+/usr/bin/python3 /root/Automation3/SIGNING/create_sum.py 
 
 # Run ansible's 'ping' module om te kijken of de client online is
 echo "Testing whether ansible client is online ..."
