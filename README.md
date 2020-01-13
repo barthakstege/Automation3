@@ -19,6 +19,7 @@ Je kunt de dependency-check automatisch uitvoeren door gebruik te maken van ```d
 ### Handleiding
 Clone de repository en run ```install.sh``` om het monitoringsysteem automatisch te installeren. Installeer je het liever stap-voor-stap? Volg dan het volgende lijstje:
 
+* stel de juiste client (en optioneel installatie directory) in met behulp van ```config.xml```
 * _(optioneel)_ controleer of de juiste dependencies aanwezig zijn op het systeem (```curl -s https://raw.githubusercontent.com/barthakstege/Automation_poging2/master/Scripts/dependencies.sh | bash | column -t```)
 * sign de scripts met het ```create_sum.py``` script (```python3 Scripts/create_sum.py```);
 * installeer de scripts met de ```scripts.yml``` en ```sysd.yml``` bestanden (```ansible-playbook /root/Automation3/SERVER_CLIENT/scripts.yml && ansible-playbook /root/Automation3/SERVER_CLIENT/sysd.yml```;
