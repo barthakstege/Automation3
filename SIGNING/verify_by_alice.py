@@ -2,7 +2,7 @@ from Crypto.Signature import pkcs1_15
 from Crypto.Hash import SHA256
 from Crypto.PublicKey import RSA
 
-user_msg = "/root/Automation3/SERVER_CLIENT/SERVER.py"
+user_msg = "/root/Automation3/SIGNING/message.txt"
 
 with open ("/root/Automation3/SIGNING/signature.txt", "rb") as g:
 	signature = g.read().replace('\n', '')
