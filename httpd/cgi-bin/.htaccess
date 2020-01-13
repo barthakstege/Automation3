@@ -1,0 +1,4 @@
+AllowOverride all
+Options +ExecCGI
+AddHandler cgi-script .py
+

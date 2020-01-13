@@ -1,0 +1,9 @@
+---
+- hosts: client
+  remote_user: root
+
+  tasks: 
+  - name: installeer scripts
+    copy: 
+     src: /root/SCRIPTS
+     dest: /root/

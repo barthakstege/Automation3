@@ -1,0 +1,15 @@
+[Unit]
+Description=Monitoring service
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+user=root
+ExecStart=/bin/bash /root/SCRIPTS/SERVER.sh
+
+[Install]
+WantedBy=multi-user.target
+

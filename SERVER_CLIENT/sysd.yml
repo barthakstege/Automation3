@@ -1,0 +1,18 @@
+---
+- hosts: client
+  remote_user: root
+
+  tasks:
+  - name: installeer service
+    copy:
+     src: /home/bart/monitor-listen.service
+     dest: /etc/systemd/system/
+  - name: reload daemon
+    systemd:
+      daemon_reload: yes
+  - name: check of service is gestart & enabled
+    systemd:
+      name: monitor-listen
+      state: started
+      enabled: yes
+
