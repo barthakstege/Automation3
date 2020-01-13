@@ -1,6 +1,6 @@
 #!/bin/bash
 ## Gemaakt door Bart :-)
-echo "AUTOMATION INSTALL SCRIPT V2.0"
+$(toilet automation | lolcat)
 
 CLIENT_IP=$(grep -oPm1 "(?<=<client>)[^<]+" /root/Automation3/INSTALL/config.xml)
 ROOT_DIR=$(grep -oPm1 "(?<=<root_path>)[^<]+" /root/Automation3/INSTALL/config.xml)
