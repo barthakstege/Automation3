@@ -24,15 +24,15 @@ fi
 
 ## Run het Python script dat SERVER.py signed
 /usr/bin/python $ROOT_DIR/SIGNING/sign_by_bob.py 
-if /usr/bin/python $ROOT_DIR/SIGNING/verify_by_alice.py | grep -v "not"; then
+if /usr/bin/python $ROOT_DIR/SIGNING/verify_by_alice.py | grep "not"; then
 	printf "\nDigital signature confirmed ...\n"
 else
-	printf "\nDigital signature could not be verified. Exiting script."
+	printf "\nDigital signature could not be verified. Exiting script.\n"
 	exit
 fi
 
 
-## Run het Python script dat een script signed.
+## Run het Python script om een SHA1 hash te maken
 /usr/bin/python3 $ROOT_DIR/SIGNING/create_sum.py 
 
 # Run ansible's 'ping' module om te kijken of de client online is
