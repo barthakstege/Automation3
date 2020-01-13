@@ -22,7 +22,7 @@ Clone de repository en run ```install.sh``` om het monitoringsysteem automatisch
 * _(optioneel)_ controleer of de juiste dependencies aanwezig zijn op het systeem (```curl -s https://raw.githubusercontent.com/barthakstege/Automation_poging2/master/Scripts/dependencies.sh | bash | column -t```)
 * sign de scripts met het ```create_sum.py``` script (```python3 Scripts/create_sum.py```);
 * installeer de scripts met de ```scripts.yml``` en ```sysd.yml``` bestanden (```ansible-playbook /root/Automation3/SERVER_CLIENT/scripts.yml && ansible-playbook /root/Automation3/SERVER_CLIENT/sysd.yml```;
-* _(optioneel)_ controleer de SHA1 sum op de client (```ssh HOST python3 /root/Automation3/SIGNING/check_sum.py```)
+* _(optioneel)_ controleer de SHA1 sum op de client (```ssh CLIENT python3 /root/Automation3/SIGNING/check_sum.py```)
 * _(optioneel)_ configureer de server met het ```config.py``` script;
 * start de lokale systemd service (```cp listen.service /etc/systemd/system/ && systemctl daemon-reload && systemctl --now enable listen.service```)
 * rol de docker container met de website uit (```docker-compose /root/Automation3/httpd/Docker/docker-compose.yml```)
