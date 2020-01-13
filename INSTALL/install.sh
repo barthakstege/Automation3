@@ -22,9 +22,9 @@ else
 	printf "\nAll dependencies are installed, continuing ...\n"
 fi
 
-## Run het Python script dat SERVER.py signed
+## Run het Python script dat een user message signed
 /usr/bin/python $ROOT_DIR/SIGNING/sign_by_bob.py 
-if /usr/bin/python $ROOT_DIR/SIGNING/verify_by_alice.py | grep "not"; then
+if /usr/bin/python $ROOT_DIR/SIGNING/verify_by_alice.py | grep -v "not"; then
 	printf "\nDigital signature confirmed ...\n"
 else
 	printf "\nDigital signature could not be verified. Exiting script.\n"
