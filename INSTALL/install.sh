@@ -3,7 +3,7 @@
 echo "AUTOMATION INSTALL SCRIPT V1.0"
 
 # Verwijder irritante cache folder (kan error geven als directory niet bestaat)
-rm -rf /root/SCRIPTS/__pycache__
+rm -rf /root/Automation3/SERVER_CLIENT/__pycache__
 
 # Run dependencies.sh en format de output
 echo "Runing dependencies.sh to check for installed software ..."
@@ -20,7 +20,7 @@ fi
 
 ## Run het Python script dat een script signed.
 echo "Sign a script"
-/usr/bin/python3 sign.py 
+/usr/bin/python3 /root/Automation3/SIGNING/sign.py 
 
 # Run ansible's 'ping' module om te kijken of de client online is
 echo "Testing whether ansible client is online ..."
@@ -35,20 +35,22 @@ fi
 
 # Voer de ansible playbooks uit
 echo "Installing scripts on client ..."
-ansible-playbook /root/SCRIPTS/scripts.yml && ansible-playbook /root/SCRIPTS/sysd.yml
+ansible-playbook /root/Automation3/SERVER_CLIENT/scripts.yml && ansible-playbook /root/Automation3/SERVER_CLIENT/sysd.yml
 echo "SCRIPTS installed sucessfully"
 
-## Check SHA1 sum op client (over ssh)
-#echo "Checking SHA1 sum of scripts on client ..."
-#if ssh 192.168.37.210 python3 /root/SCRIPTS/check_sum.py | grep 'failed'; then
-#	# Exit als SHA1 sum niet klopt
-#	echo "SHA1 sums are not correct. Exiting script."
-#	exit
-#fi
-#echo "SHA1 sums are correct."
+# Check SHA1 sum op client (over ssh)
+echo "Checking SHA1 sum of scripts on client ..."
+if ssh 192.168.213.143 python3 /root/SCRIPTS/check_sum.py | grep 'failed'; then
+	# Exit als SHA1 sum niet klopt
+	echo "SHA1 sums are not correct. Exiting script."
+	exit
+fi
+echo "SHA1 sums are correct."
+
+# SIGN SCRIPTS
 
 # Installeer de listen systemd service
-cp monitor-listen.service /etc/systemd/system/ && systemctl daemon-reload && systemctl --now enable monitor-listen.service
+cp /root/Automation3/SERVER/CLIENT/monitor-listen.service /etc/systemd/system/ && systemctl daemon-reload && systemctl --now enable monitor-listen.service
 if systemctl status monitor-listen | grep -i "active (running)"; then
 	echo "Systemd service is running."
 else
@@ -64,6 +66,8 @@ else
 	echo "Docker is not running. Exiting script."
 	exit
 fi
-# Change directory naar SCRIPTS/ en start de website met docker-compose
-cd /root/SCRIPTS/ && docker-compose up &
-echo "System installed successfully. Load 192.168.37.3 in a browser to monitor"
+## Change directory naar SCRIPTS/ en start de website met docker-compose
+#cd /root/SCRIPTS/ && docker-compose up &
+#echo "System installed successfully. Load monitoring.local in a browser to monitor"
+
+# Run Selenium
