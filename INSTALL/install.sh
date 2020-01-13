@@ -7,7 +7,7 @@ rm -rf /root/Automation3/SERVER_CLIENT/__pycache__
 
 # Run dependencies.sh en format de output
 echo "Runing dependencies.sh to check for installed software ..."
-./dependencies.sh | column -t
+bash /root/Automation3/INSTALL/dependencies.sh | column -t
 
 # Als niet alle dependencies geïnstalleerd zijn moet het script stoppen ...
 if  ./dependencies.sh | grep '[X]'; then
