@@ -27,7 +27,6 @@ fi
 if /usr/bin/python $ROOT_DIR/SIGNING/verify_by_alice.py | grep -v "not"; then
 	printf "\nDigital signature confirmed ...\n"
 else
-	printf "\nDigital signature could not be verified. Exiting script.\n"
 	exit
 fi
 
