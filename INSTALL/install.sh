@@ -10,7 +10,7 @@ echo "Runing dependencies.sh to check for installed software ..."
 bash /root/Automation3/INSTALL/dependencies.sh | column -t
 
 # Als niet alle dependencies geïnstalleerd zijn moet het script stoppen ...
-if  ./dependencies.sh | grep '[X]'; then
+if  /root/Automation3/INSTALL/dependencies.sh | grep '[X]'; then
 	echo "Error, not all dependencies are installed. Exiting script."
 	exit
 # ... en anders mag het doorgaan
@@ -40,7 +40,7 @@ echo "SCRIPTS installed sucessfully"
 
 # Check SHA1 sum op client (over ssh)
 echo "Checking SHA1 sum of scripts on client ..."
-if ssh 192.168.213.143 python3 /root/SCRIPTS/check_sum.py | grep 'failed'; then
+if ssh 192.168.213.143 python3 /root/Automation3/SIGNING/check_sum.py | grep 'failed'; then
 	# Exit als SHA1 sum niet klopt
 	echo "SHA1 sums are not correct. Exiting script."
 	exit
@@ -50,7 +50,7 @@ echo "SHA1 sums are correct."
 # SIGN SCRIPTS
 
 # Installeer de listen systemd service
-cp /root/Automation3/SERVER/CLIENT/monitor-listen.service /etc/systemd/system/ && systemctl daemon-reload && systemctl --now enable monitor-listen.service
+cp /root/Automation3/SERVER_CLIENT/monitor-listen.service /etc/systemd/system/ && systemctl daemon-reload && systemctl --now enable monitor-listen.service
 if systemctl status monitor-listen | grep -i "active (running)"; then
 	echo "Systemd service is running."
 else
