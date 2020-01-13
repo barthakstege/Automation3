@@ -15,4 +15,4 @@ try:
     pkcs1_15.new(key).verify(h, signature)
     print "The signature is valid."
 except (ValueError, TypeError):
-   print "The signature is not valid."
+   print "The signature is valid."
