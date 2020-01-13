@@ -4,12 +4,12 @@ from Crypto.PublicKey import RSA
 
 user_msg = "/root/Automation3/SERVER_CLIENT/SERVER.py"
 
-with open ("signature.txt", "rb") as g:
+with open ("/root/Automation3/SIGNING/signature.txt", "rb") as g:
 	signature = g.read().replace('\n', '')
 with open (user_msg, "rb") as f:
 	message = f.read().replace('\n', '')
 
-key = RSA.import_key(open('public.pem').read())
+key = RSA.import_key(open('/root/Automation3/SIGNING/public.pem').read())
 h = SHA256.new(message)
 try:
     pkcs1_15.new(key).verify(h, signature)
