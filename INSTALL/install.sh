@@ -22,6 +22,16 @@ else
 	printf "\nAll dependencies are installed, continuing ...\n"
 fi
 
+## Run het Python script dat SERVER.py signed
+/usr/bin/python $ROOT_DIR/SIGNING/sign_by_bob.py 
+if /usr/bin/python $ROOT_DIR/SIGNING/verify_by_alice.py | grep -v "not"; then
+	printf "\nDigital signature confirmed ...\n"
+else
+	printf "\nDigital signature could not be verified. Exiting script."
+	exit
+fi
+
+
 ## Run het Python script dat een script signed.
 /usr/bin/python3 $ROOT_DIR/SIGNING/create_sum.py 
 
@@ -49,8 +59,6 @@ if ssh $CLIENT_IP python3 $ROOT_DIR/SIGNING/check_sum.py | grep 'failed'; then
 	exit
 fi
 printf "\nSHA1 sums are correct.\n"
-
-# SIGN SCRIPTS
 
 # Installeer de listen systemd service
 cp $ROOT_DIR/SERVER_CLIENT/monitor-listen.service /etc/systemd/system/ && systemctl daemon-reload && systemctl --now enable monitor-listen.service
