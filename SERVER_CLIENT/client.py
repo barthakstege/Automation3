@@ -7,12 +7,22 @@ from sysinfo import rawRAM, rawCPU, rawDISK
 host = '192.168.213.142'
 port= 9001
 
+class Data:
+	# Initializer 
+	def __init__(self, case):
+		self.case = case
 
-# Wijs output rawRAM toe aan variabele 'data' en encode naar ASCII 
-dataHOST = socket.gethostname()
-dataRAM = rawRAM()
-dataCPU = rawCPU()
-dataDISK = rawDISK()
+
+dataHOST = Data(socket.gethostname())
+dataRAM = Data(rawRAM())
+dataCPU = Data(rawCPU())
+dataDISK = Data(rawDISK())
+
+## Wijs output rawRAM toe aan variabele 'data' en encode naar ASCII 
+#dataHOST = socket.gethostname()
+#dataRAM = rawRAM()
+#dataCPU = rawCPU()
+#dataDISK = rawDISK()
 
 #lijst = [dataHOST, "\n", str(dataRAM), "\n", str(dataCPU), "\n", str(dataDISK)]
 #data = ''.join(lijst)
