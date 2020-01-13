@@ -66,9 +66,10 @@ else
 	echo "Docker is not running. Exiting script."
 	#exit
 fi
-## Change directory naar SCRIPTS/ en start de website met docker-compose
-#cd /root/SCRIPTS/ && docker-compose up &
-#echo "System installed successfully. Load monitoring.local in a browser to monitor"
+
+# Change directory naar SCRIPTS/ en start de website met docker-compose
+cd /root/Automation3/httpd/Docker && docker-compose up &
+echo "System installed successfully. Load monitoring.local in a browser to monitor"
 
 # Run Selenium
 /usr/bin/python3 /root/Automation3/TESTING/test.py
