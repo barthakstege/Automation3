@@ -2,14 +2,23 @@
 import sqlite3
 import os
 import socket
+import config as cfg
 
-HOST = ''
-PORT = 9001
+# Instellen van de connectie
 
+host = cfg.configuration['host']
+port = cfg.configuration['port']
+addr = (host, port)
+
+#HOST = ''
+#PORT = 9001
+
+# Instellen socket
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.bind((HOST, PORT))
     s.listen()
     conn, addr = s.accept()
+    # Gebruik connectie om data te ontvangen en te decoden om op te slaan in database
     with conn:
         print('Connected by', addr)
         data = conn.recv(1024)
@@ -27,7 +36,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             pass
         # Ontvanged data in database zetten
         data_string = real.split(',')
-        # Fresh
+        # Verwijder oude values
         sc.execute('''DELETE FROM resources''')
         sc.execute('''INSERT INTO resources (host, ram, cpu, disk) VALUES (?, ?, ?, ?)''', (data_string[0], data_string[1], data_string[2], data_string[3]))
         sconn.commit()
