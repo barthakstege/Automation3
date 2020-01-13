@@ -64,7 +64,7 @@ if systemctl status docker | grep -i "active (running)"; then
 	echo "Docker is running, rolling out container ..."
 else
 	echo "Docker is not running. Exiting script."
-	exit
+	#exit
 fi
 ## Change directory naar SCRIPTS/ en start de website met docker-compose
 #cd /root/SCRIPTS/ && docker-compose up &
