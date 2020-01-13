@@ -2,7 +2,6 @@
 import socket
 from sysinfo import rawRAM, rawCPU, rawDISK
 
-
 # Instellingen verbinding
 host = '192.168.213.142'
 port= 9001
@@ -12,24 +11,17 @@ class Data:
 	def __init__(self, case):
 		self.case = case
 
-
+# Wijs data toe aan variabelen
 dataHOST = Data(socket.gethostname())
 dataRAM = Data(rawRAM())
 dataCPU = Data(rawCPU())
 dataDISK = Data(rawDISK())
 
-## Wijs output rawRAM toe aan variabele 'data' en encode naar ASCII 
-#dataHOST = socket.gethostname()
-#dataRAM = rawRAM()
-#dataCPU = rawCPU()
-#dataDISK = rawDISK()
-
-#lijst = [dataHOST, "\n", str(dataRAM), "\n", str(dataCPU), "\n", str(dataDISK)]
-#data = ''.join(lijst)
-
+# Zet lijst in data om te vervoeren met behulp van de socket
 lijst = [dataHOST,",",str(dataRAM),",",str(dataCPU),",",str(dataDISK)]
 data = ''.join(lijst)
 
+# Encode de data
 data_bytes = data.encode("utf-8")
 
 
@@ -41,6 +33,3 @@ client.connect((host, port))
 
 # Verstuur ASCII string naar server
 client.send(data_bytes)
-
-
-# Sluit verbinding

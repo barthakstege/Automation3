@@ -3,22 +3,6 @@
 from psutil import cpu_percent, virtual_memory, disk_usage
 from time import sleep
 
-# cpuCheck() print gemiddelde CPU gebruik per seconde
-def cpuCheck():
-    while True:
-        # Dit koppelt de output van cpu_percent aan een variabele
-        load = cpu_percent(percpu=False, interval = 1)
-        # De counter wordt verderop gebruikt voor waarschuwingen
-        counter = 0
-        # Als er niks aan de hand is wordt hiermee de load geprint
-        print("CPU load is op dit moment " + str(load) +"%")
-        # Als de load boven de 70% komt wordt de counter opgeteld
-        if load > 70 and counter < 5:
-            counter += 1
-        # Als de load te vaak > 70% is geweest, print het een waarschuwing
-        elif load > 70 and counter > 5:
-            print("CPU komt regelmatig (al " + str(counter) + " keer) boven 75%")
-
 # rawCPU geeft alleen het percentage gebruikte CPU (input voor matplotlib?)
 def rawCPU():
     load = cpu_percent(percpu=False, interval = 1)
@@ -44,16 +28,12 @@ def rawRAM():
     virtualMem = virtual_memory()
     return str(virtualMem[2])
 
-def menu():
-    while True:
-        keuze = input("Kies optie: [1: RAM, 2:CPU] $ ")
-        if keuze == "1":
-            ramCheck()
-        elif keuze == "2":
-            cpuCheck()
-        else:
-            break
-
-#menu()
-#print(rawRAM()) 
-#print(rawDISK())
+## OOP class om eventueel later te gebruiken
+#class Data:
+#	def __init__(self, hostname, cpu, ram, disk):
+#		self.hostname = hostname
+#		self.cpu = cpu
+#		self.ram = ram
+#		self.disk = disk
+#	
+#client = Data("client", 14.6, 12.1, 54.2)
