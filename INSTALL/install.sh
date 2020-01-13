@@ -71,3 +71,4 @@ fi
 #echo "System installed successfully. Load monitoring.local in a browser to monitor"
 
 # Run Selenium
+/usr/bin/python3 /root/Automation3/TESTING/test.py
