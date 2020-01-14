@@ -8,7 +8,7 @@ Type=simple
 Restart=always
 RestartSec=1
 user=root
-ExecStart=/bin/bash /root/SCRIPTS/SERVER.sh
+ExecStart=/bin/bash /root/Automation3/SERVER_CLIENT/SERVER.sh
 
 [Install]
 WantedBy=multi-user.target
