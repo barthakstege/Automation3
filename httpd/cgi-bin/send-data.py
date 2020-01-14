@@ -18,7 +18,7 @@ print("Update succesful, redirecting ...")
 #cpu = float(data[1].rstrip())
 #disk = float(data[2].rstrip())
 
-sqlite_file = "/home/bart/database.db"
+sqlite_file = "/root/Automation3/SERVER_CLIENT/database.db"
 conn = sqlite3.connect(sqlite_file)
 c = conn.cursor()
 
@@ -36,7 +36,7 @@ disk = c.fetchone()[0]
 print(disk)
 
 # Logging: exporteer waardes naar logbestand
-with open("/var/www/automation/logs/log.txt", "a") as log_file:
+with open("/var/www/monitoring.local/logs/log.txt", "a") as log_file:
 	date = datetime.now()
 	log_file.write(str(date))
 	log_file.write(" - ")
@@ -58,9 +58,9 @@ now = datetime.now()
 plt.title(host)
 
 #plt.show()
-plt.savefig("/var/www/automation/chart.png")
+plt.savefig("/var/www/monitoring.local/chart.png")
 
-redirectURL = "http://192.168.213.142"
+redirectURL = "http://192.168.37.3"
 print('<html>')
 print('  <head>')
 print('    <meta http-equiv="refresh" content="0;url='+str(redirectURL)+'" />') 
