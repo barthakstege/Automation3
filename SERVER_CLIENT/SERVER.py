@@ -24,7 +24,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         data = conn.recv(1024)
         real = data.decode('utf-8')
         print("Database wordt geopend")
-        sqlite_file="/home/bart/database.db"
+        sqlite_file="/root/Automation3/SERVER_CLIENT/database.db"
         sconn = sqlite3.connect(sqlite_file)
         sc = sconn.cursor()
         # Probeer database te maken (in het geval deze nog niet bestaat
