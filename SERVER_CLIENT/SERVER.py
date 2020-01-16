@@ -6,9 +6,9 @@ import config as cfg
 
 # Instellen van de connectie
 
-host = cfg.configuration['host']
-port = cfg.configuration['port']
-addr = (host, port)
+HOST = cfg.configuration['host']
+PORT = cfg.configuration['port']
+#addr = (host, port)
 
 #HOST = ''
 #PORT = 9001
