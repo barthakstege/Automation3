@@ -19,7 +19,7 @@ class AppDynamicsJob(unittest.TestCase):
     
     def test_app_dynamics_job(self):
         driver = self.driver
-        driver.get("http://192.168.213.142/")
+        driver.get("http://192.168.37.3/")
         driver.find_element_by_xpath("//input[@value='Update']").click()
         driver.find_element_by_xpath("//input[@value='Logs']").click()
     
