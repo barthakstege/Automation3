@@ -25,7 +25,7 @@ Clone de repository en run ```install.sh``` om het monitoringsysteem automatisch
 * installeer de scripts met de ```scripts.yml``` en ```sysd.yml``` bestanden (```ansible-playbook /root/Automation3/SERVER_CLIENT/scripts.yml && ansible-playbook /root/Automation3/SERVER_CLIENT/sysd.yml```;
 * _(optioneel)_ controleer de SHA1 sum op de client (```ssh CLIENT python3 /root/Automation3/SIGNING/check_sum.py```)
 * _(optioneel)_ configureer de server met het ```config.py``` script;
-* start de lokale systemd service (```cp monitor-listen.service /etc/systemd/system/ && systemctl daemon-reload && systemctl --now enable monitor-listen.service```)
+* start de lokale systemd service (```cp monitor.service /etc/systemd/system/ && systemctl daemon-reload && systemctl --now enable monitor.service```)
 * rol de docker container met de website uit (```docker-compose /root/Automation3/httpd/Docker/docker-compose.yml```)
 * bekijk de systeeminfo op de website
 * _(optioneel)_ genereer CPU load op de client om de scripts te testen (```while true; do echo "LOAD"; done```) en update de pagina om te zien dat de data up-to-date is
