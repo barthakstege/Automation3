@@ -3,7 +3,7 @@ import socket
 from sysinfo import rawRAM, rawCPU, rawDISK
 
 # Instellingen verbinding
-host = '192.168.213.142'
+host = '192.168.37.3'
 port= 9001
 
 class Data:
@@ -12,10 +12,10 @@ class Data:
 		self.case = case
 
 # Wijs data toe aan variabelen
-dataHOST = Data(socket.gethostname())
-dataRAM = Data(rawRAM())
-dataCPU = Data(rawCPU())
-dataDISK = Data(rawDISK())
+dataHOST = socket.gethostname()
+dataRAM = rawRAM()
+dataCPU = rawCPU()
+dataDISK = rawDISK()
 
 # Zet lijst in data om te vervoeren met behulp van de socket
 lijst = [dataHOST,",",str(dataRAM),",",str(dataCPU),",",str(dataDISK)]

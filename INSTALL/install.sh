@@ -1,7 +1,7 @@
 #!/bin/bash
 ## Gemaakt door Bart :-)
 
-toilet automation | lolcat
+#toilet automation | lolcat
 
 CLIENT_IP=$(grep -oPm1 "(?<=<client>)[^<]+" /root/Automation3/INSTALL/config.xml)
 ROOT_DIR=$(grep -oPm1 "(?<=<root_path>)[^<]+" /root/Automation3/INSTALL/config.xml)
@@ -23,11 +23,11 @@ else
 fi
 
 ## Run het Python script dat een user message signed
-/usr/bin/python $ROOT_DIR/SIGNING/sign_by_bob.py 
-if /usr/bin/python $ROOT_DIR/SIGNING/verify_by_alice.py | grep -v "not"; then
+/usr/bin/python $ROOT_DIR/SIGNING/SIGN.py 
+if /usr/bin/python $ROOT_DIR/SIGNING/VERIFY.py | grep -v "not"; then
 	printf "\nDigital signature confirmed ...\n"
 else
-	exit
+	printf "\nDigital signature not confirmed ...\n"
 fi
 
 
@@ -60,8 +60,8 @@ fi
 printf "\nSHA1 sums are correct.\n"
 
 # Installeer de listen systemd service
-cp $ROOT_DIR/SERVER_CLIENT/monitor-listen.service /etc/systemd/system/ && systemctl daemon-reload && systemctl --now enable monitor-listen.service
-if systemctl status monitor-listen | grep -i "active (running)"; then
+cp $ROOT_DIR/SERVER_CLIENT/monitor.service /etc/systemd/system/ && systemctl daemon-reload && systemctl --now enable monitor.service
+if systemctl status monitor | grep -i "active (running)"; then
 	printf "\nSystemd service is running.\n"
 else
 	# Exit als de service niet runt
@@ -69,18 +69,18 @@ else
 	exit
 fi
 
-# Controleer of docker active is
-if systemctl status docker | grep -i "active (running)"; then
-	printf "\nDocker is running, rolling out container ...\n"
-else
-	printf "\nDocker is not running. Exiting script.\n"
-	exit
-fi
-
-# Change directory naar SCRIPTS/ en start de website met docker-compose
-cd $ROOT_DIR/httpd/Docker && docker-compose up &
-printf "\nSystem installed successfully. Load monitoring.local in a browser to monitor\n"
+### Controleer of docker active is
+#if systemctl status docker | grep -i "active (running)"; then
+#	printf "\nDocker is running, rolling out container ...\n"
+#else
+#	printf "\nDocker is not running. Exiting script.\n"
+#	exit
+#fi
+#
+## Change directory naar SCRIPTS/ en start de website met docker-compose
+#cd $ROOT_DIR/httpd/Docker && docker-compose up &
+#printf "\nSystem installed successfully. Load monitoring.local in a browser to monitor\n"
 
 # Run Selenium
 printf "\nRunning Selenium test ...\n"
-/usr/bin/python3 $ROOT_DIR/TESTING/test.py
+/usr/bin/python $ROOT_DIR/TESTING/test.py
